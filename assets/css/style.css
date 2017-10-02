@@ -125,6 +125,10 @@ a, a:hover, a:focus {
     height: 250px;
 }
 
+#error-msg-div{
+    display: none;
+}
+
 
 /*MEDIAQUERIES*/
 

@@ -20,9 +20,12 @@ $(document).ready(function () {
         var animalName = animalInputField.val().trim();
         animalInputField.val('');
         if(isAlreadyAdded(animalName)){
-            console.log("You have already added this to the list");
+            console.log("You have already added this animal!");
+            $("#error-message").html("You have already added <b>" + animalName + "</b>!");
+            $("#error-msg-div").show();
         }
         else{
+            $("#error-msg-div").hide();
             newAnimalList.push(animalName);
             addNewAnimal(animalName);
         }
@@ -57,6 +60,7 @@ $(document).ready(function () {
     }
 
     $("ul.components").on("click", "li", function(event){
+        $("#error-msg-div").hide();
         event.preventDefault();
 
         $(this).siblings().removeClass("active");
@@ -74,6 +78,7 @@ $(document).ready(function () {
     });
 
     $("#gif-images").on("click", ".animal-img", function(){
+        $("#error-msg-div").hide();
         event.preventDefault();
 
         var state = $(this).attr("data-state");
