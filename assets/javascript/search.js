@@ -19,9 +19,32 @@ $(document).ready(function () {
         var animalInputField = $("#addAnimalInput");
         var animalName = animalInputField.val().trim();
         animalInputField.val('');
-        newAnimalList.push(animalList);
-        addNewAnimal(animalName);
+        if(isAlreadyAdded(animalName)){
+            console.log("You have already added this to the list");
+        }
+        else{
+            newAnimalList.push(animalName);
+            addNewAnimal(animalName);
+        }
     });
+
+    function isAlreadyAdded(newAnimalName){
+        return (!(isItemInArray(newAnimalName, animalList)) && 
+            (!isItemInArray(newAnimalName, newAnimalList)) ? false : true);
+    }
+
+    function isItemInArray(item, array){
+        var isPresent = false;
+        for(var i=0; i< array.length; i++){
+            console.log(i,array[i]);
+            if(array[i].toLowerCase() === item.toLowerCase()){
+                isPresent = true;
+                break;
+                console.log(item, array[i]);
+            }
+        }
+        return isPresent;
+    }
 
     function addNewAnimal(animalName){
         var listItem = $("<li>");
