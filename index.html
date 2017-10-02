@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Gifs</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="main-wrapper">
+  <nav id="sidebar">
+    <section class="sidebar-header">
+        <h3>GIFTastic</h3>
+    </section>
+
+    <section id="add-animal-section">       
+      <form id="addAnimalForm">
+        <label>Add an animal:</label>
+          <input type="text" name="animal-input" size="35" id="addAnimalInput">
+      </form>
+    </section>
+
+    <ul class="list-unstyled components">
+
+    </ul>
+    
+  </nav>
+
+  <div id="content">
+    <nav class="navbar navbar-default container-fluid">
+      <div class="navbar-header">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <span>Toggle Sidebar</span>
+          </button>
+      </div>
+    </nav>
+    <div id="gif-images">
+        
+    </div>
+  </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js">
+  </script>
+  <script type="text/javascript" src="assets/javascript/search.js"></script>
+</body>
+</html>
