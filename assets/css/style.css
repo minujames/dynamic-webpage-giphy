@@ -29,13 +29,6 @@ a, a:hover, a:focus {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-
-
 /*SIDEBAR STYLE*/
 
 #sidebar {
@@ -72,22 +65,33 @@ a, a:hover, a:focus {
     padding: 20px 0;
 }
 
-#sidebar ul li a {
+#sidebar ul li {
     padding: 10px;
     font-size: 1.1em;
     display: block;
 }
 
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+.leftMargin{
+    margin-left: 10px;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+.remove{
+    display: inline-block;
+    color: red;
+    background: inherit;
+    border: none;
+    display: none;
+}
+
+#sidebar ul li.active{
     color: #fff;
     background: #6d7fcc;
 }
 
+#sidebar ul li:hover {
+    color: #7386D5;
+    background: #fff;
+}
 
 /*CONTENT STYLE*/
 
@@ -114,15 +118,8 @@ a, a:hover, a:focus {
 }
 
 .rating{
-
-}
-
-.remove{
-    display: inline-block;
-    color: inherit;
-    background: inherit;
-    border: none;
-    display: none;
+    color: #6d7fcc;
+    font-weight: bold;
 }
 
 .animal-img{
