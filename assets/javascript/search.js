@@ -13,6 +13,7 @@ $(document).ready(function () {
         animalList.reverse().forEach(function(animal){
             addNewAnimal(animal);
         });
+        $("ul.components li").first().click();
     }
 
     // Helper method to check if an item exists in an array
