@@ -4,8 +4,8 @@ $(document).ready(function () {
     var apiKeyValue = "dc6zaTOxFJmzC";
     var imageLimit = 10;
 
-    var animalList = ["Cat", "Dog", "Tiger", "Lion", "Parrot", "Zebra", "Rabbit"];
-    var newAnimalList = [];
+    var initialAnimalList = ["Cat", "Dog", "Tiger", "Lion", "Parrot", "Zebra", "Rabbit"];
+    var animalList = Array.from(initialAnimalList);
 
     function initialize(){
         animalList.reverse().forEach(function(animal){
@@ -18,32 +18,26 @@ $(document).ready(function () {
 
         var animalInputField = $("#addAnimalInput");
         var animalName = animalInputField.val().trim();
-        animalInputField.val('');
-        if(isAlreadyAdded(animalName)){
-            console.log("You have already added this animal!");
-            $("#error-message").html("You have already added <b>" + animalName + "</b>!");
-            $("#error-msg-div").show();
-        }
-        else{
-            $("#error-msg-div").hide();
-            newAnimalList.push(animalName);
-            addNewAnimal(animalName);
+        if(animalName){
+            animalInputField.val('');
+            if(isAlreadyAdded(animalName)){
+                $("#error-message").html("You have already added <b>" + animalName + "</b>!");
+                $("#error-msg-div").show();
+            }
+            else{
+                $("#error-msg-div").hide();
+                animalList.push(animalName);
+                addNewAnimal(animalName);
+            }
         }
     });
 
     function isAlreadyAdded(newAnimalName){
-        return (!(isItemInArray(newAnimalName, animalList)) && 
-            (!isItemInArray(newAnimalName, newAnimalList)) ? false : true);
-    }
-
-    function isItemInArray(item, array){
         var isPresent = false;
-        for(var i=0; i< array.length; i++){
-            console.log(i,array[i]);
-            if(array[i].toLowerCase() === item.toLowerCase()){
+        for (var i=0; i<animalList.length; i++){
+            if(animalList[i].toLowerCase() === newAnimalName.toLowerCase()){
                 isPresent = true;
                 break;
-                console.log(item, array[i]);
             }
         }
         return isPresent;
@@ -56,6 +50,13 @@ $(document).ready(function () {
         anchorTag.attr("data-animal", animalName);
         anchorTag.text(animalName);
         listItem.append(anchorTag);
+
+        var button = $("<button>");
+        button.addClass("remove");
+        button.attr("data-name", animalName);
+        button.text("X");
+        listItem.prepend(button);
+
         $("ul.components").prepend(listItem);
     }
 
@@ -66,14 +67,20 @@ $(document).ready(function () {
         $(this).siblings().removeClass("active");
         $(this).addClass("active");
         var animal = $(this).find('a').attr('data-animal')
-        console.log('animalName', animal);
 
         $.ajax({
         url: baseUrl ,
         method: "GET",
         data: jQuery.param({api_key: apiKeyValue, limit: imageLimit, q: animal}),
         }).done(function(response){
-            displayImages(response.data);
+            if(response.data && response.data.length){
+                displayImages(response.data);    
+            }
+            else{
+                $("#gif-images").empty();
+                $("#error-message").html("No images to display!");
+                $("#error-msg-div").show();
+            }
         });
     });
 
@@ -82,7 +89,6 @@ $(document).ready(function () {
         event.preventDefault();
 
         var state = $(this).attr("data-state");
-        console.log("state", state);
         if(state === 'still'){
           var dataAnimate = $(this).attr("data-animate");
           $(this).attr("src", dataAnimate);
