@@ -3,6 +3,7 @@ $(document).ready(function () {
     var baseUrl =  "https://api.giphy.com/v1/gifs/search";
     var apiKeyValue = "dc6zaTOxFJmzC";
     var imageLimit = 10;
+    var ratingValue = "pg";
 
     var initialAnimalList = ["Cat", "Dog", "Tiger", "Lion", "Parrot", "Zebra", "Rabbit"];
     var animalList = Array.from(initialAnimalList);
@@ -115,7 +116,7 @@ $(document).ready(function () {
         $.ajax({
         url: baseUrl ,
         method: "GET",
-        data: jQuery.param({api_key: apiKeyValue, limit: imageLimit, q: animal}),
+        data: jQuery.param({api_key: apiKeyValue, limit: imageLimit, q: animal, rating: ratingValue}),
         }).done(function(response){
             // Checking whether the ajax call returned any images.
             // Displaying error message if the response does not contain any image.
