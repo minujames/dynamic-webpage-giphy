@@ -124,7 +124,7 @@ $(document).ready(function () {
             }
             else{
                 $("#gif-images").empty();
-                $("#error-message").html("No images to display! Please use a valid animal name.");
+                $("#error-message").html("No image to display! Please use a valid animal name.");
                 $("#error-msg-div").show();
             }
         });
